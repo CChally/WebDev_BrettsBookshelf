@@ -1,0 +1,585 @@
+@import url("reset.css"); /*Import reset*/
+
+/*Import Google font */
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;400;700&display=swap");
+
+/* html element */
+:root {
+  /*Set variables */
+  --gradient: rgb(106, 126, 254);
+  --borders: rgb(56, 19, 190);
+  --light: #fff;
+  --blue: #b4d6ff;
+  --other: #e6e6e6;
+
+  /*Fallback colors for browsers that dont support var() */
+  color: #000000;
+  background-color: #fff;
+
+  /* Override fallback with desired color variables */
+  font-family: "Roboto Slab", serif;
+}
+
+/**********************************************/
+/*          General Page Sections             */
+/**********************************************/
+body {
+  background-image: linear-gradient(transparent, var(--gradient));
+  min-width: 100vh;
+  min-height: 100vh;
+  font-size: 1.2rem;
+  padding: 1.3rem;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Restricting the width, and letting the height adjust. */
+/* This is so boxes dont overlap when resizing the window horizontally */
+header,
+section {
+  min-width: 80vh;
+}
+
+/* ----------------------------------- */
+/* Header styles */
+h1 {
+  font-size: 2.5rem;
+  margin: 0.5rem;
+  font-weight: bold;
+}
+
+h2,
+h3 {
+  font-size: 1.6rem;
+  margin: 0.7rem;
+  font-weight: bold;
+}
+
+/* ----------------------------------- */
+/* Anchor styles */
+/* No underlines for links */
+a {
+  text-decoration: none;
+}
+
+/* Underline links when hovering */
+a:hover {
+  text-decoration: underline;
+}
+
+/* ----------------------------------- */
+/* Banner Styles */
+#banner {
+  display: flex;
+  align-items: baseline;
+  background-color: var(--blue);
+  border: 0.7rem solid var(--borders);
+  border-radius: 0.4rem;
+  padding: 0.6rem;
+}
+
+/* ----------------------------------- */
+/* Nav Styles /*
+/* Nested navigation within Banner */
+#banner nav {
+  flex: 1;
+}
+
+nav ul {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Navigation links, and button styles */
+nav ul a,
+button {
+  display: inline-block;
+  font-size: 1.5rem;
+  text-decoration: none;
+  padding: 0.4rem;
+  color: var(--light);
+  margin: 0.3rem;
+  border: 0.3rem solid var(--borders);
+  border-radius: 0.3rem;
+  background: var(--borders);
+}
+
+nav ul a:hover,
+button:hover {
+  border-radius: 0.3rem;
+  text-decoration: underline;
+  background-color: var(--light);
+  color: var(--borders);
+}
+
+/* CSS class to conditionally highlight navigation buttons depending on the what page the user is currently on. */
+nav ul a.selected {
+  background-color: rgb(218, 139, 12);
+  border: 0.3rem solid white;
+}
+
+/* ----------------------------------- */
+/* Icons */
+.main_icon {
+  font-size: 6rem;
+}
+
+#add_book_icon {
+  font-size: 1.8em;
+  padding-top: 1rem;
+}
+button {
+  font-size: 1.1rem;
+  font-family: inherit;
+}
+
+/* ----------------------------------- */
+/* Section Styles */
+section {
+  border: 0.5rem solid var(--borders);
+  border-radius: 0.3rem;
+  background-color: var(--other);
+  margin-top: 2rem;
+  padding: 1.3rem;
+  flex: 1;
+}
+
+section header {
+  display: flex;
+  margin-bottom: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ----------------------------------- */
+/* Aside */
+aside {
+  border-radius: 0.3rem;
+  margin-top: 0.5rem;
+  padding: 2rem;
+}
+
+/* ----------------------------------- */
+/* Form Styles */
+form {
+  padding: 1rem;
+  margin: 1rem;
+}
+
+/* Input element + label */
+form div {
+  padding-bottom: 1rem;
+}
+
+/* Input labels */
+form div label {
+  display: inline-block;
+  padding: 0.5rem;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+/* Default input, select and text area styles */
+input,
+select,
+textarea {
+  background: var(--light);
+  box-shadow: 0.2rem 0.2rem 0.2rem #888888;
+  outline: none;
+  display: block;
+  border: 0.13rem solid black;
+  border-radius: 0.3rem;
+  font-size: 1.4rem;
+  padding: 0.5rem;
+}
+
+/* Override box shadow inherit */
+input[type="radio"],
+input[type="range"],
+input[type="checkbox"] {
+  box-shadow: none;
+}
+
+/* Input placeholders of all, types. */
+input::placeholder,
+textarea::placeholder,
+select,
+input[type="date"] {
+  font-size: 1.5rem;
+  padding-left: 0.3rem;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  color: #4a4a4a;
+}
+
+/* Text Area */
+textarea {
+  display: block;
+  font-size: inherit;
+  font-family: inherit;
+}
+
+/* ----------------------------------- */
+/* Footer positioning and styling */
+footer {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  margin-top: 2rem;
+  align-items: flex-end;
+  color: var(--light);
+}
+
+/* ----------------------------------- */
+/* Book Display  */
+.book_container {
+  background-color: var(--blue);
+  display: flex;
+  flex-flow: row wrap;
+  align-content: stretch;
+  border: 0.7rem solid #918d8d;
+  border-radius: 0.5rem;
+  margin: 1.5rem;
+  padding: 1.5rem;
+  justify-content: space-evenly;
+}
+
+/* CROSS BROWSER ISSUE : must add -webkit- in flex display. */
+/* If not added, align-self will not work for button controls, they will appear in the flex-start regardless 
+in Safari.*/
+/* Book Display  */
+.book_display {
+  border: 0.1rem solid black;
+  box-shadow: 0.5rem 0.5rem 0.5rem #888888;
+  border-radius: 0.3rem;
+  display: -webkit-flex;
+  flex-flow: column;
+  margin: 0.6rem;
+  padding: 0.3rem;
+  width: 19%;
+  background-color: white;
+  flex: 0 1 1;
+}
+
+/* Title and Author group div takes up remaining space in the book display container. */
+/* This is so the books, and controls can be aligned, with varying 'size' of book details. */
+.book_details {
+  flex: 1;
+}
+
+/* Book detail */
+.book_display p {
+  font-size: 1.4rem;
+  margin: 0.3rem;
+  text-align: center;
+}
+
+/* Book Cover image */
+.book_display img,
+figure img {
+  box-shadow: 0.5rem 0.5rem 0.5rem #888888;
+  margin: 1rem;
+  align-self: center;
+  border: 0.11rem solid black;
+}
+
+/* ----------------------------------- */
+/* Book Controls */
+.book_controls {
+  display: flex;
+  width: fit-content;
+  align-self: flex-end;
+  border: 0.15rem solid var(--borders);
+  border-radius: 0.3rem;
+  background-color: var(--other);
+  margin: 0.4rem;
+}
+
+/* Book control svg icons */
+.book_controls svg {
+  margin: 0.2rem;
+  font-size: 1.6rem;
+  padding: 0.2rem;
+}
+
+/* Book display container buttons positionin*/
+/* ----------------------------------- */
+.container_buttons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* ----------------------------------- */
+/* Page Specific */
+/*               */
+/* ----------------------------------- */
+/* register.html Page */
+/* Register Section */
+section#register-form {
+  display: flex;
+  justify-content: center;
+}
+/* Form */
+form#register {
+  border: 0.3rem solid var(--borders);
+  border-radius: 0.4rem;
+  display: flex;
+  flex-flow: column;
+  background-color: var(--blue);
+  align-items: center;
+}
+
+aside {
+  background-color: var(--blue);
+  border: 0.3rem solid var(--borders);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2rem;
+  padding: 2rem;
+}
+/* Password Requirements aside */
+aside ul {
+  list-style-type: square;
+  margin: 2rem;
+}
+
+aside ul li {
+  margin-top: 0.5rem;
+}
+/* ----------------------------------- */
+/* Login Page */
+form#login {
+  background-color: var(--blue);
+  border: 0.3rem solid var(--borders);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+}
+
+form#login div {
+  display: flex;
+  margin: 0.3rem;
+}
+
+/* ----------------------------------- */
+/* Details */
+section#details {
+  display: flex;
+  background-color: var(--other);
+}
+
+#details .book_controls {
+  font-size: 2.5rem;
+  border: none;
+}
+
+#details .book_details {
+  flex: 1;
+  background-color: var(--light);
+  border: 0.1rem solid black;
+  align-self: center;
+  padding: 2rem;
+  height: fit-content;
+}
+
+#details .book_details p {
+  padding: 0.3rem;
+  margin: 0.5rem;
+}
+
+/* ----------------------------------- */
+/* Index Page */
+.search_options {
+  text-align: center;
+  padding: 0.3rem;
+}
+
+.search_options h2 {
+  font-size: 3rem;
+  padding: 0.3rem;
+}
+
+/* ----------------------------------- */
+/* Search page */
+section#form form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#search_icon svg {
+  font-size: 5rem;
+}
+
+/* ----------------------------------- */
+/* addBook Page */
+section#book_form {
+  background-color: var(--blue);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header icon and heading */
+#book_form header {
+  background-color: white;
+  border: 0.3rem solid var(--borders);
+  border-radius: 0.5rem;
+  display: flex;
+  padding-bottom: 1.3rem;
+}
+
+/* Back to home button */
+#back_to_home {
+  color: blue;
+  font-size: 2rem;
+  margin: 0.3rem;
+}
+
+form#add_book_form {
+  border-radius: 0.5rem;
+  display: flex;
+}
+
+.file_container {
+  box-shadow: 0.2rem 0.2rem 0.2rem 0.2rem #888888;
+  background-color: var(--other);
+  border: 0.3rem solid black;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  border-radius: 0.5rem;
+  padding: 2rem;
+  margin-left: 1rem;
+  flex: 1;
+}
+
+.file_container div {
+  display: flex;
+  flex-direction: column;
+}
+
+.input_container {
+  box-shadow: 0.2rem 0.2rem 0.2rem 0.2rem #888888;
+  background-color: var(--other);
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  border: 0.3rem solid black;
+  border-radius: 0.5rem;
+  display: flex;
+  width: 50%;
+  flex-direction: column;
+  padding: 2rem;
+}
+
+.input_container div {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Book Format Fieldset */
+fieldset#format {
+  display: flex;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-top: 0.3rem solid var(--borders);
+  border-bottom: 0.3rem solid var(--borders);
+}
+
+fieldset#format legend {
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+fieldset#format div {
+  margin: 0.5rem;
+  padding: 1rem;
+}
+
+/* Override bold font-weight for option labels */
+fieldset#format div label {
+  font-weight: normal;
+}
+
+/* Input Container Buttons -> Clear, Auto-Complete, AddBook */
+.input_container div#form_buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+div#password_buttons {
+  display: flex;
+  justify-content: center;
+}
+div#password_buttons button {
+  align-self: center;
+}
+
+/* To make AddBook flex remaining space */
+div#form_buttons button {
+  flex: 1;
+}
+
+/* ----------------------------------- */
+/* Forgot Page */
+section#form_content {
+  background-color: var(--blue);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+form#forgot_form {
+  display: flex;
+  flex-direction: column;
+}
+
+#forgot_form button {
+  margin-top: 0.5rem;
+}
+
+/* ----------------------------------- */
+/* Next book icon, button will be clicked to generate new grid of books in the users collection, or in the search options generated
+from the db */
+button#next_books {
+  border: 0.1rem solid black;
+  padding: 0.5rem;
+}
+
+#next_books svg {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+/* ----------------------------------- */
+/* Form messages, error and success */
+.error {
+  margin-top: 0.6rem;
+  margin-bottom: 0.6rem;
+  color: red;
+}
+.success {
+  color: green;
+}
+.hidden {
+  display: none;
+}
+/* Destory account button */
+a#destroy {
+  background-color: red;
+  border: 0.2rem solid var(--borders);
+  color: white;
+  padding: 0.4rem;
+  border-radius: 0.3rem;
+}
+/* Destory account hover */
+a#destroy:hover {
+  border-color: red;
+}
+/* Rating stars */
+#stars{
+  color:green;
+}
